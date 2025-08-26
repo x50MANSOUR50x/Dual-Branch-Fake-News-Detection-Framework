@@ -41,13 +41,13 @@ def safe_load(path: str, device: torch.device):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load vocabularies (saved as dicts: str -> int)
-entity_vocab = torch.load("models/entity_vocab.pt", map_location="cpu")
-relation_vocab = torch.load("models/relation_vocab.pt", map_location="cpu")
+entity_vocab = torch.load("models/vocabs/entity_vocab.pt", map_location="cpu")
+relation_vocab = torch.load("models/vocabs/relation_vocab.pt", map_location="cpu")
 
 # TransE (embedding_dim must match what your fusion expects)
 transe = TransE(len(entity_vocab), len(relation_vocab), embedding_dim=128)
 try:
-    transe.load_state_dict(safe_load("models/transe_model_valLoss_0.3785.pt", device), strict=False)
+    transe.load_state_dict(safe_load("models/checkpoints/transe_model_valLoss_0.3785.pt", device), strict=False)
 except FileNotFoundError:
     # If the checkpoint is missing, the app still runs (weights are random).
     pass
@@ -87,7 +87,7 @@ fusion_model = FusionClassifier(
 ).to(device)
 
 try:
-    fusion_model.load_state_dict(safe_load("models/fusion_model.pt", device), strict=False)
+    fusion_model.load_state_dict(safe_load("models/checkpoints/fusion_model.pt", device), strict=False)
 except FileNotFoundError:
     # If missing, app still runs (random fusion head).
     pass
