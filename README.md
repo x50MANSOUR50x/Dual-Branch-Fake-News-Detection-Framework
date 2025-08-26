@@ -126,7 +126,7 @@ Check the paper/
 
 - ✅Gradio demo app
 
-- Add video demo
+- ✅Add video demo
 
 - Finalize IEEE research paper
 
