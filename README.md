@@ -1,169 +1,141 @@
 # 📰 Dual-Branch Fake News Detector (BERT + TransE)
-## 🌟 Overview
-Welcome! 👋 This project is all about detecting fake news using a dual-branch neural framework that fuses text understanding (BERT) with knowledge graphs (TransE).
 
-It’s not just another NLP model — it combines the semantic meaning of words with the real-world facts extracted as triplets (head–relation–tail).
-Together, they help the model reason better and say: “FAKE” or “REAL.”
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)](#)
+[![PyTorch 2.x](https://img.shields.io/badge/PyTorch-2.x-orange)](#)
+[![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
----
-
-## 🧩 How It Works
-
-1. Text Branch (BERT) 📝
-
-    - Encodes the article text into a [CLS] embedding.
-
-2. Knowledge Branch (TransE) 🧠
-
-    - Extracts knowledge triplets (head, relation, tail).
-
-    - Maps them into embeddings using TransE.
-
-    - Aggregates them into a single “knowledge vector.”
-
-3. Fusion Layer 🔗
-
-    - Concatenates [CLS || knowledge].
-
-    - Small MLP classifier → FAKE / REAL.
+> A practical research repo that detects fake news by **fusing** semantic text features (BERT) with **knowledge-graph** signals (TransE).
 
 ---
 
-### 📦 Repository Structure
-``` bash
-Data/                       # datasets (e.g., liar_dataset)
-Models/                     # trained models and checkpoints
-outputs/                    # logs and results
-triplet_extraction/         # REBEL or custom triplet extractor
+## 🌟 Highlights
+- Dual-branch architecture: **Text (BERT)** + **Knowledge (TransE)** + **Fusion MLP**
+- End-to-end pipeline: triplet extraction → KG embeddings → fusion
+- Ready-to-run **GUI** (Gradio) and **reproducible notebooks**
+- Public datasets supported (LIAR, FakeNewsNet)
 
-aggregate_triplets.ipynb    # aggregate extracted triplets
-build_transe_dataset.py     # build entity/relation vocabs + dataset
-fuse_text_knowledge.ipynb   # fusion experiments
-fusion_inference.ipynb      # evaluate fusion model
-gui_fusion_demo.py          # Gradio demo app
-train_bert_text_branch.ipynb # train text branch (BERT)
-train_transe_knowledge_branch.ipynb # train knowledge branch (TransE)
-transe_model.py             # TransE + aggregator
-triplet_extraction_rebel.ipynb # triplet extraction notebook
+---
 
-requirements.txt
-.gitignore
+## 📹 Demo
+[![Watch the demo](references/demo_thumb.png)](./Dual-Branch%20Fake%20News%20Detector%20(BERT%20+%20TransE).mp4)
+<!-- If you make a GIF: ![Demo](references/demo.gif) -->
+
+---
+
+## 📚 Table of Contents
+- [Overview](#-overview)
+- [Repo Structure](#-repo-structure)
+- [Quickstart](#-quickstart)
+- [Training & Evaluation](#-training--evaluation)
+- [Results](#-results)
+- [Paper](#-paper)
+- [FAQ](#-faq)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Authors & Supervision](#-authors--supervision)
+
+---
+
+## 🧭 Overview
+This project combines **BERT** for language understanding with **TransE** to ground statements in a knowledge graph. We extract (head, relation, tail) triples, embed them, then **concatenate** `[CLS || knowledge]` and classify **FAKE/REAL**. See code and data layout below.  
+
+---
+
+## 🗂 Repo Structure
+``` bash Data/
+└─ liar_dataset/ (train.tsv, valid.tsv, test.tsv)
+Models/
+├─ checkpoints/ (bert_model_F1_.pt, fusion_model.pt, transe_model*.pt)
+├─ tensors/ (cls_embeddings.pt, knowledge_tensor.pt, knowledge_vectors.pt)
+└─ vocabs/ (entity_vocab.pt, relation_vocab.pt)
+notebooks/
+outputs/ (e.g., fusion_predictions.csv)
+Paper/ (IEEE draft / source)
+references/ (papers, thumbs, figures)
+LICENSE
 README.md
-papers/                      # IEEE template + draft paper
-video_demo.mp4              # demo video (optional)
+requirements.txt
 ```
 
 ---
 
-## 🚀 Getting Started
-1️⃣ Setup Environment
+## 🚀 Quickstart
 ```bash
+# 1) Create env
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
+
+# 2) Install deps
 pip install -r requirements.txt
+
+# 3) (Optional) Put LIAR/FakeNewsNet in Data/
+# 4) Run GUI
+python notebooks/GUI/gui_fusion_demo.py  # or adjust path if different
 ```
+Tip: install PyTorch per your CUDA from pytorch.org if needed.
 
-2️⃣ Prepare Data
+markdown
+## 🧪 Training & Evaluation
+**BERT branch**
+- `notebooks/BERT_training/train_bert_text_branch.ipynb` — fine-tune BERT
 
-- Place your dataset (e.g., Liar, FakeNewsNet) in Data/.
+**Knowledge branch (TransE)**
+- `notebooks/TransE_training/aggregate_triplets.ipynb` — build/article triplets
+- `notebooks/TransE_training/build_transe_dataset.py` — build entity/relation vocabs
+- `notebooks/TransE_training/train_transe_knowledge_branch.ipynb` — train TransE
 
-- Run aggregate_triplets.ipynb to extract triplets.
-
-- Run build_transe_dataset.py to build vocab files.
-
-3️⃣ Train Models
-
-- train_bert_text_branch.ipynb → fine-tune BERT.
-
-- train_transe_knowledge_branch.ipynb → train TransE.
-
-- fuse_text_knowledge.ipynb → fusion experiments.
-
-4️⃣ Run GUI 🎨
-```bash
-python gui_fusion_demo.py
-```
-Launches a Gradio app → type or paste news → get a FAKE/REAL prediction!
+**Fusion**
+- `notebooks/Fusion_model/fuse_text_knowledge.ipynb` — fuse `[CLS || KG]`
+- `notebooks/Fusion_model/fusion_inference.ipynb` — evaluate and export predictions (e.g., `outputs/fusion_predictions.csv`)
 
 ---
 
+## 📈 Results
 
-## 🎥 Demo
+| Dataset      | Model              | Acc. | F1   |
+|--------------|--------------------|-----:|-----:|
+| LIAR         | BERT (text only)   |  0.6425    |  0.6797   |
+| LIAR         | TransE (KG only)   |  —   |  —   |
+| LIAR         | **Fusion (Ours)**  |  0.6339    |  0.7715   |
 
-(Add a screenshot or embed your video once ready)
-
----
-
-## 📑 Research Paper
-
-This repo is accompanied by a research paper written in the IEEE Conference Template.
-Check the papers/
- folder or view/edit it on Overleaf.
+**Ablations:** add rows for pooling choice, KG size, extractor confidence, etc.  
+**Qualitative examples:** optional table with an article snippet + top triples + prediction.
 
 ---
 
-## 🛠️ Tech Stack
-
-- Language Models: BERT (HuggingFace Transformers)
-
-- Knowledge Graphs: TransE implementation (PyTorch)
-
-- Fusion: MLP over embeddings
-
-- GUI: Gradio for easy demos
-
-- Training & Experiments: Jupyter notebooks
+## 📝 Paper
+- Draft: `Paper/Dual_Branch_Fake_News_Detection_Framework.pdf`
+- Template: IEEE conference format  
+- Overleaf: paste our LaTeX (see `Paper/`) and replace template text
 
 ---
 
-## 📈 Roadmap
+## ❓ FAQ
+**Q: Why TransE over RotatE/ComplEx?**  
+A: TransE is simple, fast, and works well for this fusion baseline. RotatE/ComplEx are great drop-in upgrades.
 
-- ✅Text branch (BERT)
+**Q: What if triple extraction is noisy?**  
+A: Use confidence thresholds and filter relations; the fusion still benefits from partial KG signal.
 
-- ✅Knowledge branch (TransE)
-
-- ✅Fusion experiments
-
-- ✅Gradio demo app
-
-- ✅Add video demo
-
-- ⌛Finalize IEEE research paper
-
-- (Future) Deploy on HuggingFace Spaces 🚀
+**Q: Can I run without a GPU?**  
+A: Yes for inference/GUI; training BERT/TransE is much faster on GPU.
 
 ---
 
 ## 🤝 Contributing
-
-Contributions are welcome! 🎉
-If you’d like to improve the project, feel free to fork, open issues, or submit PRs.
+Issues and PRs are welcome. Please:
+- run notebooks with clear cell order
+- add docstrings / comments
+- avoid committing large raw datasets (they’re git-ignored)
 
 ---
 
 ## 📄 License
-
-This project is licensed under the MIT License – see the LICENSE
- file for details.
-
----
-
-## 🙌 Acknowledgements
-
-- HuggingFace 🤗 for Transformers
-
-- Babelscape REBEL for triplet extraction
-
-- The FakeNewsNet & Liar datasets
-
-- And all open-source contributors who make research possible ❤️
+MIT — see [LICENSE](LICENSE).
 
 ---
 
 ## 👨‍🎓 Authors & Supervision
-
-- Author: Mohamed Ahmed Mansour Mahmoud
-
-- Under the supervision of: Professor Ramakrishna
-
-
+- **Author:** Mohamed Ahmed Mansour Mahmoud  
+- **Under the supervision of:** Professor Ramakrishna
