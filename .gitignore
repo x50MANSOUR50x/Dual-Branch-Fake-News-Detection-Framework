@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.egg-info/
+build/
+dist/
+
+# Virtual envs & env files
+.venv/
+venv/
+.env
+*.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Data & models (keep folders, ignore heavy files)
+Data/*
+Models/*
+outputs/*
+!Data/.gitkeep
+!Models/.gitkeep
+!outputs/.gitkeep
+
+# PyTorch / HF caches
+*.pt
+*.pth
+.cache/
+huggingface/
