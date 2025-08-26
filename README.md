@@ -95,11 +95,11 @@ markdown
 
 ## 📈 Results
 
-| Dataset      | Model              | Acc. | F1   |
-|--------------|--------------------|-----:|-----:|
-| LIAR         | BERT (text only)   |  0.6425    |  0.6797   |
-| LIAR         | TransE (KG only)   |  —   |  —   |
-| LIAR         | **Fusion (Ours)**  |  0.6339    |  0.7715   |
+| Dataset      | Model              | Acc. | F1   |val_loss
+|--------------|--------------------|-----:|-----:|---------:
+| LIAR         | BERT (text only)   |  0.6425    |  0.6797   | —
+| LIAR         | TransE (KG only)   |  —   |  —  | 0.3785
+| LIAR         | **Fusion (Ours)**  |  0.6339    |  0.7715   | —
 
 **Ablations:** add rows for pooling choice, KG size, extractor confidence, etc.  
 **Qualitative examples:** optional table with an article snippet + top triples + prediction.
