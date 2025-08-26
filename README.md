@@ -45,8 +45,14 @@ This project combines **BERT** for language understanding with **TransE** to gro
 ---
 
 ## 🗂 Repo Structure
-``` bash Data/
+``` bash 
+Data/
 └─ liar_dataset/ (train.tsv, valid.tsv, test.tsv)
+docs/
+ ├── Internship_Report_0.1.pdf
+ ├── Internship_Report_0.2.pdf
+ ├── Internship_Report_0.3.pdf
+ └─  Internship_Report_0.4.pdf
 Models/
 ├─ checkpoints/ (bert_model_F1_.pt, fusion_model.pt, transe_model*.pt)
 ├─ tensors/ (cls_embeddings.pt, knowledge_tensor.pt, knowledge_vectors.pt)
