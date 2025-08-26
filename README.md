@@ -156,6 +156,8 @@ This project is licensed under the MIT License – see the LICENSE
 
 - The FakeNewsNet & Liar datasets
 
+- And all open-source contributors who make research possible ❤️
+
 ---
 
 ## 👨‍🎓 Authors & Supervision
@@ -164,6 +166,4 @@ This project is licensed under the MIT License – see the LICENSE
 
 - Under the supervision of: Professor Ramakrishna
 
----
 
-And all open-source contributors who make research possible ❤️
