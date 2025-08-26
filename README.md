@@ -19,6 +19,7 @@
 
 ## 📹 Demo
 ![Demo](references/demo.gif)
+
 [![Watch the demo](references/demo_thumb.png)](./Dual-Branch%20Fake%20News%20Detector%20(BERT%20+%20TransE).mp4)
 <!-- If you make a GIF: ![Demo](references/demo.gif) -->
 
