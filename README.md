@@ -49,7 +49,7 @@ triplet_extraction_rebel.ipynb # triplet extraction notebook
 requirements.txt
 .gitignore
 README.md
-paper/                      # IEEE template + draft paper
+papers/                      # IEEE template + draft paper
 video_demo.mp4              # demo video (optional)
 ```
 
@@ -97,7 +97,7 @@ Launches a Gradio app → type or paste news → get a FAKE/REAL prediction!
 ## 📑 Research Paper
 
 This repo is accompanied by a research paper written in the IEEE Conference Template.
-Check the paper/
+Check the papers/
  folder or view/edit it on Overleaf.
 
 ---
@@ -128,7 +128,7 @@ Check the paper/
 
 - ✅Add video demo
 
-- Finalize IEEE research paper
+- ⌛Finalize IEEE research paper
 
 - (Future) Deploy on HuggingFace Spaces 🚀
 
