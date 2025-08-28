@@ -119,7 +119,7 @@ Here are example predictions from our **Dual-Branch Fake News Detection Framewor
 
 | Text Example                                                                 | Predicted Label |
 |------------------------------------------------------------------------------|-----------------|
-| "COVID-19 can be cured by drinking bleach."                                  | ❌ Fake          |
+| "Einstein invented the internet."                                  | ❌ Fake          |
 | "NASA confirms discovery of water on the moon."                              | ✅ Real          |
 | "The Eiffel Tower is located in Berlin."                                     | ❌ Fake          |
 | "The Prime Minister announced new climate policies in today’s speech."       | ✅ Real          |
