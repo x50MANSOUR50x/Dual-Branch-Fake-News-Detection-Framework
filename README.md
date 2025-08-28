@@ -109,8 +109,8 @@ markdown
 | LIAR         | TransE (KG only)   |  —   |  —  | 0.3785
 | LIAR         | **Fusion (Ours)**  |  0.6339    |  0.7715   | —
 
-**Ablations:** add rows for pooling choice, KG size, extractor confidence, etc.  
-**Qualitative examples:** optional table with an article snippet + top triples + prediction.
+<!-- **Ablations:** add rows for pooling choice, KG size, extractor confidence, etc.  
+**Qualitative examples:** optional table with an article snippet + top triples + prediction. -->
 
 ---
 
