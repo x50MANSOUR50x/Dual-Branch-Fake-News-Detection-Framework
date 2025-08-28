@@ -53,6 +53,8 @@ docs/
  ├── Internship_Report_0.2.pdf
  ├── Internship_Report_0.3.pdf
  └─  Internship_Report_0.4.pdf
+Figures/
+└─ liar dataset visualization/ 
 Models/
 ├─ checkpoints/ (bert_model_F1_.pt, fusion_model.pt, transe_model*.pt)
 ├─ tensors/ (cls_embeddings.pt, knowledge_tensor.pt, knowledge_vectors.pt)
