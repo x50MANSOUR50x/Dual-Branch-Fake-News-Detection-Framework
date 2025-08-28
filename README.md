@@ -113,6 +113,18 @@ markdown
 **Qualitative examples:** optional table with an article snippet + top triples + prediction. -->
 
 ---
+## 📊 Sample Results
+
+Here are example predictions from our **Dual-Branch Fake News Detection Framework** (BERT text branch + TransE knowledge branch + Fusion):
+
+| Text Example                                                                 | Predicted Label |
+|------------------------------------------------------------------------------|-----------------|
+| "COVID-19 can be cured by drinking bleach."                                  | ❌ Fake          |
+| "NASA confirms discovery of water on the moon."                              | ✅ Real          |
+| "The Eiffel Tower is located in Berlin."                                     | ❌ Fake          |
+| "The Prime Minister announced new climate policies in today’s speech."       | ✅ Real          |
+
+---
 
 ## 📝 Paper
 - Draft: `Paper/Dual_Branch_Fake_News_Detection_Framework.pdf`
