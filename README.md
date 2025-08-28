@@ -121,7 +121,7 @@ Here are example predictions from our **Dual-Branch Fake News Detection Framewor
 |------------------------------------------------------------------------------|-----------------|
 | "Einstein invented the internet."                                  | ❌ Fake          |
 | "NASA confirms discovery of water on the moon."                              | ✅ Real          |
-| "The Eiffel Tower is located in Berlin."                                     | ❌ Fake          |
+| "Earth is the biggest planet in the solar system."                                     | ❌ Fake          |
 | "The Prime Minister announced new climate policies in today’s speech."       | ✅ Real          |
 
 ---
